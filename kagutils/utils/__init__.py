@@ -1,1 +1,1 @@
-from utils.kaggle_access import *
+from .kaggle_access import *
