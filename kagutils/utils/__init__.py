@@ -1,1 +1,1 @@
-from .kaggle_access import *
+from .competition_access import *
