@@ -5,4 +5,4 @@ This repository is convenient package for Kaggle Competitions.
 `#ToDo: 後で書く`
 
 # Installation
-`#ToDo: 後で書く`
+- `pip install git+https://github.com/yuiki-iwayama/kaggle-utils`
