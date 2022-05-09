@@ -106,3 +106,8 @@ class Competition(KaggleApi):
 
         df.to_csv(file_path, index=False, sep=",")
         super().competition_submit(csv_file_path, message, self.competition_id, quiet)
+
+
+if __name__ == "__main__":
+    titanic = Competition("titanic")
+    print(titanic.competitions_list())
