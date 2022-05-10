@@ -9,9 +9,9 @@ class Competition(KaggleApi):
     The competition class is the child of the KaggleApi class and represents the Kaggle competition.
 
     Attributes:
-        self.competition_id: str
+        self.competition_id (str):
             competition_id of the competition
-        self.api_client: None default `None`
+        self.api_client  (None): default `None`
             api_client for kaggle.com
 
     Methods:
@@ -50,7 +50,7 @@ class Competition(KaggleApi):
             save_name:str, default `data`
                 a directory name containing the all competition data files
 
-        Returns
+        Returns:
             None
 
         Examples:
@@ -78,18 +78,19 @@ class Competition(KaggleApi):
 
         Convert the pd.DataFrame to a csv file and submit it to the competition.
 
-        Parameters
-            df: pd.DataFrame
+        Parameters:
+            df (pd.DataFrame):
                 pd.DataFrame containing meta data to be submitted
-            message: str
+            message (str):
                 the submission description
             file_name: str
                 the competition metadata file, extension is always csv
-            path: str, default `None`
+            path (str) default `None`
                 file path to the competition metadata file
-            quiet: bool, default `False`
+            quiet (bool): default `False`
                 suppress verbose output (default is False)
-        Returns
+
+        Returns:
             None
 
         Examples:
