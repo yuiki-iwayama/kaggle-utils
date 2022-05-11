@@ -13,7 +13,8 @@ class Competition(KaggleApi):
             competition_id of the competition
         self.api_client  (None): default `None`
             api_client for kaggle.com
-        self.save_path
+        self.save_path (str):
+            path to the directory containing the all competition data files
 
     Methods:
         competition_download_files():
@@ -35,8 +36,16 @@ class Competition(KaggleApi):
                 api_client for kaggle.com
         """
         super().__init__(api_client=api_client)
-        self.competition_id = competition_id
+        self._competition_id = competition_id
         self.authenticate()
+
+    @property
+    def competition_id(self):
+        return self._competition_id
+
+    @property
+    def save_path(self):
+        return self._save_path
 
     def competition_download_files(self, path=None, force=False, quiet=True, save_name="data"):
         """Download all competition data files
@@ -61,18 +70,18 @@ class Competition(KaggleApi):
             >>> hoge = Competition("hoge")
             >>> hoge.cometition_download_files()
         """
-        file_name = self.competition_id + ".zip"
+        file_name = self._competition_id + ".zip"
         if path is None:
             file_path = file_name
-            self.save_path = save_name
+            self._save_path = save_name
         else:
             file_path = os.path.join(path, file_name)
-            self.save_path = os.path.join(path, save_name)
+            self._save_path = os.path.join(path, save_name)
 
-        if os.path.isdir(self.save_path) and force == False:
+        if os.path.isdir(self._save_path) and force == False:
             return None
 
-        super().competition_download_files(self.competition_id, path, force, quiet)
+        super().competition_download_files(self._competition_id, path, force, quiet)
         shutil.unpack_archive(file_path, save_path)
         os.remove(file_path)
 
@@ -89,7 +98,7 @@ class Competition(KaggleApi):
             pd.DataFrame:
                 pd.DataFrame read from csv file in the directory where you saved the dataset
         """
-        file_path = os.path.join(self.save_path, name + ".csv")
+        file_path = os.path.join(self._save_path, name + ".csv")
 
         print(f"Load: {file_path}")
         return pd.read_csv(file_path, **kwargs)
@@ -124,10 +133,10 @@ class Competition(KaggleApi):
         if path is None:
             file_path = file_name + ".csv"
         else:
-            file_path = os.join.path(path, file_name + ".csv")
+            file_path = os.path.join(path, file_name + ".csv")
 
         df.to_csv(file_path, index=False, sep=",")
-        super().competition_submit(csv_file_path, message, self.competition_id, quiet)
+        super().competition_submit(csv_file_path, message, self._competition_id, quiet)
 
 
 if __name__ == "__main__":
