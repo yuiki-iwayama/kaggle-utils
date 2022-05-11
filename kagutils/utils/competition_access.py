@@ -61,10 +61,10 @@ class Competition(KaggleApi):
         file_name = self.competition_id + ".zip"
         if path is None:
             file_path = file_name
-            save_path = save_name
+            self.save_path = save_name
         else:
-            file_path = path + file_name
-            save_path = path + save_name
+            file_path = os.path.join(path, file_name)
+            self.save_path = os.path.join(path, save_name)
 
         if os.path.isdir(save_path) and force == False:
             return None
@@ -72,6 +72,19 @@ class Competition(KaggleApi):
         super().competition_download_files(self.competition_id, path, force, quiet)
         shutil.unpack_archive(file_path, save_path)
         os.remove(file_path)
+
+    def read_csv(self, name, **kwargs):
+        """_summary_
+
+        Parameters
+        ----------
+        name : _type_
+            _description_
+        """
+        file_path = os.join.path(self.save_path, name + ".csv")
+
+        print(f"Load: {file_path}")
+        return pd.read_csv(file_path, **kwargs)
 
     def competition_submit(self, df, message, file_name, path=None, quiet=False):
         """Submit to competition
