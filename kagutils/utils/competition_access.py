@@ -77,7 +77,7 @@ class Competition(KaggleApi):
         os.remove(file_path)
 
     def read_csv(self, name, **kwargs):
-        """Read csv file into DataFrame.
+        """Wrapper function for pd.read_csv()
 
         Load the csv file in the directory where you saved the dataset into pd.DataFrame.
 
@@ -89,7 +89,7 @@ class Competition(KaggleApi):
             pd.DataFrame:
                 pd.DataFrame read from csv file in the directory where you saved the dataset
         """
-        file_path = os.join.path(self.save_path, name + ".csv")
+        file_path = os.path.join(self.save_path, name + ".csv")
 
         print(f"Load: {file_path}")
         return pd.read_csv(file_path, **kwargs)
