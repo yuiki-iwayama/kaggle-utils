@@ -19,7 +19,7 @@ class Competition(KaggleApi):
         competition_download_files():
             Download and unzip the zip containing all competition data files.
         read_csv():
-
+            Load the csv file in the directory where you saved the dataset into DataFrame.
         competition_submit():
             Convert the pd.DataFrame to a csv file and submit it to the competition.
     """
@@ -77,12 +77,17 @@ class Competition(KaggleApi):
         os.remove(file_path)
 
     def read_csv(self, name, **kwargs):
-        """_summary_
+        """Read csv file into DataFrame.
 
-        Parameters
-        ----------
-        name : _type_
-            _description_
+        Load the csv file in the directory where you saved the dataset into pd.DataFrame.
+
+        Parameters:
+            name (str):
+                filename without extension
+
+        Returns
+            pd.DataFrame:
+                pd.DataFrame read from csv file in the directory where you saved the dataset
         """
         file_path = os.join.path(self.save_path, name + ".csv")
 
