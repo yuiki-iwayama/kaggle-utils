@@ -69,7 +69,7 @@ class Competition(KaggleApi):
             file_path = os.path.join(path, file_name)
             self.save_path = os.path.join(path, save_name)
 
-        if os.path.isdir(save_path) and force == False:
+        if os.path.isdir(self.save_path) and force == False:
             return None
 
         super().competition_download_files(self.competition_id, path, force, quiet)
