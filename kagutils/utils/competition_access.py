@@ -13,10 +13,13 @@ class Competition(KaggleApi):
             competition_id of the competition
         self.api_client  (None): default `None`
             api_client for kaggle.com
+        self.save_path
 
     Methods:
         competition_download_files():
             Download and unzip the zip containing all competition data files.
+        read_csv():
+
         competition_submit():
             Convert the pd.DataFrame to a csv file and submit it to the competition.
     """
@@ -111,12 +114,12 @@ class Competition(KaggleApi):
             >>> import os
             >>> hoge = Competition("hoge")
             >>> os.mkdir("./submission")
-            >>> hoge.competition_submit(df, message="first submission", file_name="1st.csv", path="./submission/")
+            >>> hoge.competition_submit(df, message="first submission", file_name="1st", path="./submission/")
         """
         if path is None:
-            file_path = file_name
+            file_path = file_name + ".csv"
         else:
-            file_path = path + file_name
+            file_path = os.join.path(path, file_name + ".csv")
 
         df.to_csv(file_path, index=False, sep=",")
         super().competition_submit(csv_file_path, message, self.competition_id, quiet)
