@@ -7,7 +7,7 @@ def _requires_from_file(filename):
 
 setup(
     name="kagutils",
-    version="0.0.6",
+    version="0.0.7",
     packages=find_packages(),
     install_requires=_requires_from_file("requirements.txt")
 )
