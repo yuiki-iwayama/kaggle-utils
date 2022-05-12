@@ -82,7 +82,7 @@ class Competition(KaggleApi):
             return None
 
         super().competition_download_files(self._competition_id, path, force, quiet)
-        shutil.unpack_archive(file_path, save_path)
+        shutil.unpack_archive(file_path, self._save_path)
         os.remove(file_path)
 
     def read_csv(self, name, **kwargs):
@@ -118,7 +118,7 @@ class Competition(KaggleApi):
             path (str) default `None`
                 file path to the competition metadata file
             quiet (bool): default `False`
-                suppress verbose output (default is False)
+                suppress verbose output
 
         Returns:
             None
@@ -133,7 +133,8 @@ class Competition(KaggleApi):
         if path is None:
             file_path = file_name + ".csv"
         else:
-            file_path = os.path.join(path, file_name + ".csv")
+            os.makedirs(path, exist_ok=True)
+            csv_file_path = os.path.join(path, file_name + ".csv")
 
         df.to_csv(file_path, index=False, sep=",")
         super().competition_submit(csv_file_path, message, self._competition_id, quiet)
