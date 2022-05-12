@@ -131,7 +131,7 @@ class Competition(KaggleApi):
             >>> hoge.competition_submit(df, message="first submission", file_name="1st", path="./submission/")
         """
         if path is None:
-            file_path = file_name + ".csv"
+            csv_file_path = file_name + ".csv"
         else:
             os.makedirs(path, exist_ok=True)
             csv_file_path = os.path.join(path, file_name + ".csv")
