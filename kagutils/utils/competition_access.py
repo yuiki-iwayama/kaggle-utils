@@ -136,7 +136,7 @@ class Competition(KaggleApi):
             os.makedirs(path, exist_ok=True)
             csv_file_path = os.path.join(path, file_name + ".csv")
 
-        df.to_csv(file_path, index=False, sep=",")
+        df.to_csv(csv_file_path, index=False, sep=",")
         super().competition_submit(csv_file_path, message, self._competition_id, quiet)
 
 
