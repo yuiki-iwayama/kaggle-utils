@@ -15,7 +15,6 @@ def test_competition_access():
 
     df = compe.read_csv("gender_submission")
     assert type(df) == type(pd.DataFrame())
-    os.mkdir("./submission")
     compe.competition_submit(df, message="test", file_name="test_sub", path="/work/submission")
 
     shutil.rmtree("/work/data")
