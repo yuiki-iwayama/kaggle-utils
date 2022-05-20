@@ -25,7 +25,7 @@ class Competition(KaggleApi):
             Convert the pd.DataFrame to a csv file and submit it to the competition.
     """
 
-    def __init__(self, competition_id, api_client=None):
+    def __init__(self, competition_id: str, api_client: None=None):
         """
         Constructs all the attributes for the Competition class.
 
@@ -47,7 +47,7 @@ class Competition(KaggleApi):
     def save_path(self):
         return self._save_path
 
-    def competition_download_files(self, path=None, force=False, quiet=True, save_name="data"):
+    def competition_download_files(self, path: str=None, force: bool=False, quiet: bool=True, save_name: str="data") -> None:
         """Download all competition data files
 
         Download and unzip the zip containing all competition data files.
@@ -85,32 +85,32 @@ class Competition(KaggleApi):
         shutil.unpack_archive(file_path, self._save_path)
         os.remove(file_path)
 
-    def read_csv(self, name, **kwargs):
+    def read_csv(self, name: str, **kwargs) -> pd.core.frame.DataFrame:
         """Wrapper function for pd.read_csv()
 
-        Load the csv file in the directory where you saved the dataset into pd.DataFrame.
+        Load the csv file in the directory where you saved the dataset into pandas.DataFrame.
 
         Parameters:
             name (str):
                 filename without extension
 
         Returns
-            pd.DataFrame:
-                pd.DataFrame read from csv file in the directory where you saved the dataset
+            pandas.core.frame.DataFrame:
+                pandas.DataFrame read from csv file in the directory where you saved the dataset
         """
         file_path = os.path.join(self._save_path, name + ".csv")
 
         print(f"Load: {file_path}")
         return pd.read_csv(file_path, **kwargs)
 
-    def competition_submit(self, df, message, file_name, path=None, quiet=False):
+    def competition_submit(self, df: pd.core.frame.DataFrame, message: str, file_name: str, path: str=None, quiet: bool=False) -> None:
         """Submit to competition
 
-        Convert the pd.DataFrame to a csv file and submit it to the competition.
+        Convert the pandas.DataFrame to a csv file and submit it to the competition.
 
         Parameters:
-            df (pd.DataFrame):
-                pd.DataFrame containing meta data to be submitted
+            df (pd.core.frame.DataFrame):
+                pandas.DataFrame containing meta data to be submitted
             message (str):
                 the submission description
             file_name: str
