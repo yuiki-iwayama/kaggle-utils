@@ -34,10 +34,15 @@ class Competition(KaggleApi):
                 competition_id of the competition
             self.api_client: None default None
                 api_client for kaggle.com
+
+        Raises:
+            VauleError: When a competition_id that is not currently held is specified as an argument.
         """
         super().__init__(api_client=api_client)
-        self._competition_id = competition_id
         self.authenticate()
+        if competition_id not in list(map(str, self.competitions_list())):
+            raise ValueError("Non-existent competition_id.")
+        self._competition_id = competition_id
 
     @property
     def competition_id(self):
