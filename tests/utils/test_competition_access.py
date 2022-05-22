@@ -6,10 +6,10 @@ import shutil
 
 
 def test_create_competition_instance():
-    compe = Competition("titanic")
     with pytest.raises(ValueError):
         Competition("test")
-    assert compe.competition_id == "titanic"
+    compe = Competition("spaceship-titanic")
+    assert compe.competition_id == "spaceship-titanic"
 
 
 def test_non_param_download_files():

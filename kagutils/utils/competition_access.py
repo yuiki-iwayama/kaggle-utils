@@ -40,7 +40,7 @@ class Competition(KaggleApi):
         """
         super().__init__(api_client=api_client)
         self.authenticate()
-        if competition_id not in list(map(str, self.competitions_list())):
+        if competition_id not in list(map(str, self.competitions_list(search=competition_id))):
             raise ValueError("Non-existent competition_id.")
         self._competition_id = competition_id
 
@@ -146,5 +146,5 @@ class Competition(KaggleApi):
 
 
 if __name__ == "__main__":
-    titanic = Competition("titanic")
-    print(titanic.competitions_list())
+    spaceship_titanic = Competition("spaceship-titanic")
+    print(spaceship_titanic.competitions_list())
