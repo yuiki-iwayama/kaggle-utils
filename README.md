@@ -1,5 +1,5 @@
 # kaggle-utils
-This repository is convenient package for Kaggle Competitions.
+This repository is convenient library for Kaggle Competitions.
 
 # API credentials
 **To use the Competition class, the following operations are required.**
