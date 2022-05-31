@@ -9,3 +9,4 @@ plt.rcParams["axes.titlecolor"] = "black"
 plt.rcParams["text.color"] = "black"
 plt.rcParams["xtick.color"] = "black"
 plt.rcParams["ytick.color"] = "black"
+plt.rcParams["figure.autolayout"] = True
